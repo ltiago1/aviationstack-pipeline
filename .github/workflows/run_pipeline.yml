@@ -3,14 +3,14 @@ name: Run Flight Data Pipeline
 # NOTE: GitHub Actions scheduled workflows can experience delays due to queue congestion.
 # Scheduled runs may not execute precisely on the specified interval (e.g., may run every 6 hours instead of hourly).
 # This is a known GitHub Actions limitation on free/shared runner infrastructure.
-# 
+#
 # Future improvement: This workflow will be triggered by Apache Airflow once implemented,
 # providing more reliable scheduling and better orchestration.
 
 on:
   schedule:
-    # Runs at the top of every 2nd hour (e.g., 00:00, 02:00, 04:00, etc. UTC)
-    - cron: '0 */2 * * *' 
+    # Runs at the top of every 3rd hour (e.g., 00:00, 03:00, 06:00, etc. UTC)
+    - cron: '0 */3 * * *'
   # Allow manual trigger
   workflow_dispatch:
 
