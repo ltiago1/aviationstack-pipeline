@@ -9,8 +9,8 @@ name: Run Flight Data Pipeline
 
 on:
   schedule:
-    # Runs at the top of every 3rd hour (e.g., 00:00, 03:00, 06:00, etc. UTC)
-    - cron: '0 */3 * * *'
+    # Runs at the top of every 4th hour (e.g., 00:00, 04:00, 08:00, etc. UTC)
+    - cron: '0 */4 * * *'
   # Allow manual trigger
   workflow_dispatch:
 
