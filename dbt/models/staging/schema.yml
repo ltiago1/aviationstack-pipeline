@@ -1,0 +1,56 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: bronze
+    description: "Raw flight data from AviationStack API"
+    tables:
+      - name: flights
+        description: "Raw flight records ingested from API"
+        columns:
+          - name: flight_id
+            description: "Unique flight identifier"
+          - name: flight_iata
+            description: "IATA flight code"
+          - name: flight_icao
+            description: "ICAO flight code"
+          - name: flight_number
+            description: "Flight number"
+          - name: airline_iata
+            description: "IATA airline code"
+          - name: airline_icao
+            description: "ICAO airline code"
+          - name: dep_iata
+            description: "Departure airport IATA code"
+          - name: arr_iata
+            description: "Arrival airport IATA code"
+          - name: flight_status
+            description: "Current status of flight"
+
+models:
+  - name: stg_flights
+    description: "Cleaned and standardized flight data"
+    columns:
+      - name: flight_id
+        description: "Unique flight identifier"
+        tests:
+          - not_null
+          - unique
+      - name: flight_identifier
+        description: "User-friendly flight identifier"
+        tests:
+          - not_null
+      - name: departure_airport_iata
+        description: "IATA code of departure airport"
+        tests:
+          - not_null
+      - name: arrival_airport_iata
+        description: "IATA code of arrival airport"
+        tests:
+          - not_null
+      - name: flight_status
+        description: "Current status of the flight (scheduled, in_air, landed, etc.)"
+      - name: departure_scheduled_time
+        description: "Scheduled departure time"
+      - name: arrival_scheduled_time
+        description: "Scheduled arrival time"

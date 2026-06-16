@@ -1,0 +1,33 @@
+# ─── Runtime ──────────────────────────────────────────────────────────────────
+# Python 3.14.6  (not a pip package — set via your interpreter)
+
+# ─── Core data ────────────────────────────────────────────────────────────
+pandas>=2.3.0
+numpy>=2.0.0
+
+# ─── HTTP / ingestion ─────────────────────────────────────────────────────────
+requests==2.32.3
+urllib3>=2.0,<3.0
+
+# TLS cert bundle
+certifi>=2024.6.2
+
+# ─── Data pipeline & transformation ──────────────────────────────────────────
+pyarrow>=17.0.0          # fast parquet read/write, Arrow backend for pandas
+fastparquet>=2024.8.0    # alternative parquet engine (useful for append mode)
+duckdb>=1.1.0            # fast in-process SQL on dataframes and parquet files
+
+# ─── dbt for SQL-based transformations ─────────────────────────────────────────
+dbt-core>=1.8.0         # core dbt framework
+dbt-duckdb>=1.8.0        # DuckDB adapter for dbt
+
+# ─── Config & secrets ─────────────────────────────────────────────────────────
+python-dotenv==1.0.0
+pydantic>=2.10.0         # config validation and data models (with py3.14 wheels)
+pydantic-settings>=2.6.0 # loads .env into typed settings classes
+
+# ─── Scheduling / orchestration (lightweight) ─────────────────────────────────
+schedule==1.2.2          # simple cron-like job scheduler
+
+# ─── Logging & observability ──────────────────────────────────────────────────
+loguru==0.7.2            # drop-in structured logger, much better than stdlib logging
