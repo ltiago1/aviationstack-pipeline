@@ -31,7 +31,7 @@ def fetch_flight_data(limit=100, verify_tls=True):
     )
 
     if response.status_code != 200:
-        raise Exception(f"API Error: {response.text}")
+        raise Exception(f"API Error: status {response.status_code}")
 
     data = response.json().get("data", [])
     return data

@@ -37,37 +37,41 @@ def run_pipeline():
         logger.info("STAGE 2: Running dbt transformation pipeline...")
         logger.info("  - Staging layer (Silver): Cleaning and standardizing data")
         logger.info("  - Marts layer (Gold): Building facts and dimensions")
-        
+
         try:
             # Run dbt from the dbt directory
             result = subprocess.run(
                 ["dbt", "run", "--profiles-dir", "dbt", "--project-dir", "dbt"],
                 capture_output=True,
                 text=True,
-                check=False
+                check=False,
             )
-            
+
             if result.returncode == 0:
                 logger.info("dbt transformation completed successfully")
             else:
-                logger.warning(f"dbt run had warnings or issues: {result.stderr}")
-                
+                logger.warning(
+                    "dbt run had warnings or issues; see dbt log output for details"
+                )
+
             # Run dbt tests
             logger.info("Running dbt tests...")
             test_result = subprocess.run(
                 ["dbt", "test", "--profiles-dir", "dbt", "--project-dir", "dbt"],
                 capture_output=True,
                 text=True,
-                check=False
+                check=False,
             )
-            
+
             if test_result.returncode == 0:
                 logger.info("dbt tests passed")
             else:
-                logger.warning(f"Some dbt tests failed: {test_result.stderr}")
-                
+                logger.warning("Some dbt tests failed; see dbt log output for details")
+
         except FileNotFoundError:
-            logger.error("dbt not found. Please install dbt-duckdb: pip install dbt-duckdb")
+            logger.error(
+                "dbt not found. Please install dbt-duckdb: pip install dbt-duckdb"
+            )
             raise
 
         # ────────────────────────────────────
